@@ -22,12 +22,27 @@
             angular.module("listaTelefonica", []);
             angular.module("listaTelefonica").controller("listaTelefonicaController", function ($scope) {
                 $scope.titulo = "Lista Telefônica";
+                $scope.contatos = [
+                        {nome: "Pedro", telefone: "99865-9865"},
+                        {nome: "Ana", telefone: "98654-3246"},
+                        {nome: "Maria", telefone: "98974-2298"}
+                ];
             });
         </script>
     </head>
     <body ng-controller="listaTelefonicaController">
         <div class="jumbotron">
-            <h1 ng-bind="titulo"></h1>
+            <h3 ng-bind="titulo"></h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                </tr>
+                <tr ng-repeat="contato in contatos">
+                    <td ng-bind="contato.nome"></td>
+                    <td ng-bind="contato.telefone"></td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
