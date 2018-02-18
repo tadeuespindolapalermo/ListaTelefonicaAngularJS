@@ -27,17 +27,19 @@
         <script>
             angular.module("listaTelefonica", []);
             angular.module("listaTelefonica").controller("listaTelefonicaController", function ($scope) {
-                $scope.titulo = "Lista Telefônica";
+
+                $scope.titulo = "Lista Telefônica AngularJS";
+
                 $scope.contatos = [
                         {nome: "Pedro", telefone: "99865-9865"},
                         {nome: "Ana", telefone: "98654-3246"},
                         {nome: "Maria", telefone: "98974-2298"}
                 ];
+
                 $scope.adicionarContato = function (contato) {
                     $scope.contatos.push(angular.copy(contato));
                     delete $scope.contato;
                 };
-
             });
         </script>
     </head>
