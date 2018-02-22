@@ -21,6 +21,12 @@
             .form-control {
                 margin-bottom: 5px;
             }
+            .selecionado {
+			    background-color: yellow;
+		    }
+            .negrito {
+			    font-weight: bold;
+		    }
         </style>
 
         <!-- Script Inline Temporário -->
@@ -32,7 +38,7 @@
 
                 $scope.contatos = [
                     {nome: "Pedro", telefone: "99865-9865", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
-                    {nome: "Ana", telefone: "98654-3246", operadora: {nome: "Vivo", codigo: 15, categoria: "Celular"}}, 
+                    {nome: "Ana", telefone: "98654-3246", operadora: {nome: "Vivo", codigo: 15, categoria: "Celular"}},
                     {nome: "Maria", telefone: "98974-2298", operadora: {nome: "Tim", codigo: 41, categoria: "Celular"}}
                 ];
 
@@ -54,13 +60,15 @@
     <body ng-controller="listaTelefonicaController">
         <div class="jumbotron">
             <h3 ng-bind="titulo"></h3>
-            <table class="table table-striped">
+            <table class="table">
                 <tr>
+                    <th></th>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Operadora</th>
                 </tr>
-                <tr ng-repeat="contato in contatos">
+                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
+                    <td><input type="checkbox" ng-model="contato.selecionado"/></td>
                     <td ng-bind="contato.nome"></td>
                     <td ng-bind="contato.telefone"></td>
                     <td ng-bind="contato.operadora.nome"></td>
