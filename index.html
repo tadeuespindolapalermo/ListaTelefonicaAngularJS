@@ -9,9 +9,8 @@
         <!-- Estilo Inline Temporário-->
         <style media="screen">
             .jumbotron {
-                width: 400px;
+                width: 450px;
                 text-align: center;
-                margin-top: 20px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -37,9 +36,9 @@
                 $scope.titulo = "Lista Telefônica AngularJS";
 
                 $scope.contatos = [
-                    {nome: "Pedro", telefone: "99865-9865", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
-                    {nome: "Ana", telefone: "98654-3246", operadora: {nome: "Vivo", codigo: 15, categoria: "Celular"}},
-                    {nome: "Maria", telefone: "98974-2298", operadora: {nome: "Tim", codigo: 41, categoria: "Celular"}}
+                    {nome: "Pedro", telefone: "99865-9865", cor: "blue", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
+                    {nome: "Ana", telefone: "98654-3246", cor: "yellow", operadora: {nome: "Vivo", codigo: 15, categoria: "Celular"}},
+                    {nome: "Maria", telefone: "98974-2298", cor: "red", operadora: {nome: "Tim", codigo: 41, categoria: "Celular"}}
                 ];
 
                 $scope.operadoras = [
@@ -78,12 +77,14 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Operadora</th>
+                    <th>Cor</th>
                 </tr>
                 <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
                     <td><input type="checkbox" ng-model="contato.selecionado"/></td>
                     <td ng-bind="contato.nome"></td>
                     <td ng-bind="contato.telefone"></td>
                     <td ng-bind="contato.operadora.nome"></td>
+                    <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
                 </tr>
             </table>
             <hr />
