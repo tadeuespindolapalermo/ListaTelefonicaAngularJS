@@ -35,7 +35,7 @@
             angular.module("listaTelefonica", ["ngMessages"]);
             angular.module("listaTelefonica").controller("listaTelefonicaController", function ($scope) {
 
-                $scope.titulo = "Lista Telefônica AngularJS";
+                $scope.titulo = "Lista Telefônica com AngularJS";
 
                 $scope.contatos = [
                     {nome: "Pedro", telefone: "99865-9865", data: new Date(), cor: "blue", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
@@ -68,22 +68,28 @@
                         return contato.selecionado;
                     });
                 };
+
+                $scope.ordenarPor = function(campo) {
+                    $scope.criterioOrdenacao = campo;
+                    $scope.direcaoOrdenacao = !$scope.direcaoOrdenacao;
+                };
             });
         </script>
     </head>
     <body ng-controller="listaTelefonicaController">
         <div class="jumbotron">
-            <h3 ng-bind="titulo"></h3>
+            <h3 ng-bind="titulo"></h3><br />
+            <input class="form-control type="text" ng-model="criterioBusca" placeholder="O que você está buscando?" />
             <table ng-show="contatos.length > 0" class="table">
                 <tr>
                     <th></th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
+                    <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+                    <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
                     <th>Operadora</th>
                     <th>Cor</th>
                     <th>Data</th>
                 </tr>
-                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
+                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:criterioBusca | orderBy:criterioOrdenacao:direcaoOrdenacao">
                     <td><input type="checkbox" ng-model="contato.selecionado"/></td>
                     <td ng-bind="contato.nome | uppercase"></td>
                     <td ng-bind="contato.telefone"></td>
@@ -97,7 +103,7 @@
                 <small>*Campos Obrigatórios!</small>
                 <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="*Nome" ng-required="true" ng-minlength="10" />
                 <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="*Telefone xxxx-xxxx ou xxxxx-xxxx" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" />
-                <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+                <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy:'nome'">
                     <option value="">Selecione uma Operadora:</option>
                 </select>
             </form>
