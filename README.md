@@ -11,7 +11,7 @@ Bibliotecas e pastas Ignoradas pelo .gitignore:
 
 INTEGRAÇÃO COM O BACK-END:
 
-Execute pelo menos uma vez no terminal o seguinte comando para instalar as dependências do projeto contidas no arquivo package.json:
+Dentro da pasta backend execute pelo menos uma vez no terminal o seguinte comando para instalar as dependências do projeto contidas no arquivo package.json:
 
 npm install
 
