@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": " Integração com o back-end por AJAX, utilizando o serviço $http.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tadeuespindolapalermo/ListaTelefonicaAngularJS"
+  },
+  "keywords": [
+    "AngularJS",
+    "Javascript",
+    "Express",
+    "Node"
+  ],
+  "dependencies": {
+    "express": "^3.x"
+  },
+  "author": "Tadeu E. P.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tadeuespindolapalermo/ListaTelefonicaAngularJS"
+  },
+  "homepage": "http://www.codigofonteonline.com.br/"
+}
