@@ -7,7 +7,7 @@ Bibliotecas e pastas Ignoradas pelo .gitignore:
 
 - AngularJS 1.6.9 - (/lib/angular-1.6.9) - https://angularjs.org/
 
-- Módulos do Node - (/node_modules)
+- Módulos do Node do Back-end - (/node_modules)
 
 INTEGRAÇÃO COM O BACK-END:
 
