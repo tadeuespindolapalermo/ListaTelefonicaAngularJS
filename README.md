@@ -9,12 +9,12 @@ Bibliotecas e pastas Ignoradas pelo .gitignore:
 
 - Módulos do Node - (/node_modules)
 
-# BACK-END:
+INTEGRAÇÃO COM O BACK-END:
 
 Execute pelo menos uma vez no terminal o seguinte comando para instalar as dependências do projeto contidas no arquivo package.json:
 
-# npm install
+npm install
 
 Para subir o serviço do back-end, dentro da pasta backend execute o seguite comando no terminal:
 
-# node contatosBackend.js
+node contatosBackend.js
