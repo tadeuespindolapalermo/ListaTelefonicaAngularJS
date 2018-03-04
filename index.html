@@ -6,107 +6,11 @@
         <script src="lib/angular-1.6.9/angular.min.js"></script>
         <script src="lib/angular-1.6.9/i18n/angular-locale_pt-br.js"></script>
         <script src="lib/angular-1.6.9/angular-messages.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/listaTelefonicaController.js"></script>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap-4.0.0/dist/css/bootstrap.min.css" />
-
-        <!-- Estilo Inline Temporário-->
-        <style media="screen">
-            .jumbotron {
-                margin-top: 20px;
-                width: 900px;
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .table {
-                margin-top: 20px;
-            }
-            .form-control {
-                margin-bottom: 5px;
-            }
-            .selecionado {
-                background-color: yellow;
-            }
-            .negrito {
-                font-weight: bold;
-            }
-            hr {
-                border-color: #999;
-            }
-        </style>
-
-        <!-- Script Inline Temporário -->
-        <script>
-            angular.module("listaTelefonica", ["ngMessages"]);
-            angular.module("listaTelefonica").controller("listaTelefonicaController", function ($scope, $filter, $http) {
-
-                $scope.titulo = "Lista Telefônica com AngularJS";
-
-                $scope.contatos = [];
-
-                $scope.operadoras = [];
-
-                /*$scope.contatos = [
-                    {nome: $filter('uppercase')("Pedro"), telefone: "99865-9865", data: new Date(), cor: "blue", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
-                    {nome: "Ana", telefone: "98654-3246", data: new Date(), cor: "yellow", operadora: {nome: "Vivo", codigo: 15, categoria: "Celular"}},
-                    {nome: "Maria", telefone: "98974-2298", data: new Date(), cor: "red", operadora: {nome: "Tim", codigo: 41, categoria: "Celular"}},
-                    {nome: "Tadeu", telefone: "98647-3913", data: new Date(), cor: "brown", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
-                    {nome: "Yure", telefone: "98647-3913", data: new Date(), cor: "blue", operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}}
-                ];*/
-
-                /*$scope.operadoras = [
-                    {nome: "Oi", codigo: 14, categoria: "Celular", preco: 1},
-                    {nome: "Vivo", codigo: 15, categoria: "Celular", preco: 3},
-                    {nome: "Tim", codigo: 41, categoria: "Celular", preco: 2},
-                    {nome: "GVT", codigo: 25, categoria: "Fixo", preco: 1},
-                    {nome: "Embratel", codigo: 21, categoria: "Fixo", preco: 1}
-                ];*/
-
-                var carregarContatos = function() {
-                    $http.get("http://localhost:3412/contatos").then(function (response) {
-                        $scope.contatos = response.data;
-                    }).catch(function (response, status) {
-                        $scope.message = "Aconteceu um problema: " + response.data;
-                    });
-                };
-
-                var carregarOperadoras = function() {
-                    $http.get("http://localhost:3412/operadoras").then(function (response) {
-                        $scope.operadoras = response.data;
-                    });
-                };
-
-                $scope.adicionarContato = function (contato) {
-                    //$scope.contatos.push(angular.copy(contato));
-                    contato.data = new Date();
-                    contato.cor = "black";
-                    $http.post("http://localhost:3412/contatos", contato).then(function (response) {
-                        delete $scope.contato;
-                        $scope.contatoForm.$setPristine();
-                        carregarContatos();
-                    });
-                };
-
-                $scope.apagarContatos = function(contatos) {
-                    $scope.contatos = contatos.filter(function(contato) {
-                        if (!contato.selecionado) return contato;
-                    });
-                };
-
-                $scope.isContatoSelecionado = function(contatos) {
-                    return contatos.some(function(contato) {
-                        return contato.selecionado;
-                    });
-                };
-
-                $scope.ordenarPor = function(campo) {
-                    $scope.criterioOrdenacao = campo;
-                    $scope.direcaoOrdenacao = !$scope.direcaoOrdenacao;
-                };
-                carregarContatos();
-                carregarOperadoras();
-            });
-        </script>
-    </head>
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+    </head>    
     <body ng-controller="listaTelefonicaController">
         <div class="jumbotron">
             <h3 ng-bind="titulo"></h3><br />
@@ -158,6 +62,6 @@
             <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
             <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contato</button>
         </div>
-        <div ng-include="'footer.html'"></div>
+        <div ng-include="'view/footer.html'"></div>
     </body>
 </html>
